@@ -1,0 +1,28 @@
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+import javax.sql.DataSource;
+
+public class DBUtil {
+
+    private static volatile DataSource dataSource = null;
+
+    private final String URL = "";;
+    private final String USERNAME = "root";
+    private final String PASSWORD = "";
+
+    private DataSource getDataSource() {
+        if (dataSource == null) {
+            synchronized(DBUtil.class) {
+                if (dataSource == null) {
+                    dataSource = new MysqlDataSource();;
+                    MysqlDataSource mysqlDataSource = (MysqlDataSource)dataSource;;
+                    mysqlDataSource.setUrl(URL);
+                    mysqlDataSource.setUser(USERNAME);
+                    mysqlDataSource.setPassword(PASSWORD);
+                }
+            }
+        }
+        return dataSource;
+    }
+
+}
