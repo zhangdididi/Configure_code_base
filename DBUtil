@@ -1,16 +1,17 @@
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import javax.sql.DataSource;
+import java.sql.*;
 
 public class DBUtil {
 
     private static volatile DataSource dataSource = null;
 
-    private final String URL = "";;
-    private final String USERNAME = "root";
-    private final String PASSWORD = "";
+    private static final String URL = "";;
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
 
-    private DataSource getDataSource() {
+    private static DataSource getDataSource() {
         if (dataSource == null) {
             synchronized(DBUtil.class) {
                 if (dataSource == null) {
@@ -23,6 +24,25 @@ public class DBUtil {
             }
         }
         return dataSource;
+    }
+
+    private static Connection getConnection() {
+        try {
+            return getDataSource().getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void close(Connection connection, PreparedStatement statement, ResultSet resultSet) {
+        try {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
