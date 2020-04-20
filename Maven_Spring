@@ -15,6 +15,13 @@
             <artifactId>spring-context</artifactId>
             <version>5.2.3.RELEASE</version>
         </dependency>
+             
+        <!-- 日志需要的依赖 -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
     </dependencies>
     
     <build>
