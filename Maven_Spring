@@ -29,6 +29,7 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>2.1.2</version>
         </dependency>
+
         <!-- druid-spring-boot-starter: 阿里Druid数据库连接池，同样的运行时需要 -->
         <dependency>
             <groupId>com.alibaba</groupId>
